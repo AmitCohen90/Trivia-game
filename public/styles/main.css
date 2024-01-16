@@ -1,0 +1,72 @@
+.mainContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: aqua;
+    scroll-behavior: auto;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.introduction{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    background: linear-gradient(120deg, #13076B 0%, #968AEB 50%, #C0B04D 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.introduction > h1{
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+}
+
+.introduction > p{
+    width: 40%;
+    font-size: 1.2rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.introduction button{
+    border-color: #C0B04D;
+}
+
+.introduction button:hover{
+    background-color: #6B5D07;
+    border: none;
+}
+
+.introduction > img{
+    height: 40vh;
+    border-radius: 5%;
+}
+
+.selection{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: purple
+}

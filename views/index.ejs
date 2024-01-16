@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class = "mainContainer">
+        <div class="introduction">
+            <h1 class=" fw-bold text-body-emphasis">Welcome to the Trivia Game</h1>
+            <p class="lead">In this website you are going to play a trivia game. You are going to select
+                number of questions (1 to 50 questions maximum), the questions's category, questions' difficulty
+                and questions' type (multiple choice or True/False questions). Click the button below to continue
+                to the selection section.
+            </p>
+            <a href="#selection"><button type="button" class="btn btn-outline-light btn-lg px-4 me-sm-3">Move to selection section</button></a>
+            <img src="./Images/quiz_show_02.jpg" alt="quiz_show">
+        </div>
+        <div class="selection" id="selection">
+            <h2>Select your preferences below and then click the Start button</h2>
+            <form action="/" id="form" class="form" method="get">
+                <select name="numberOfQuestions" class="form-select">
+                    <option value="" ></option>
+                </select>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
