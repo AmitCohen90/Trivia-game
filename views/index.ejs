@@ -32,9 +32,65 @@
         <div class="selection" id="selection">
             <h2>Select your preferences below and then click the Start button</h2>
             <form action="/" id="form" class="form" method="get">
-                <select name="numberOfQuestions" class="form-select">
-                    <option value="" ></option>
-                </select>
+                <div class="criterionDiv">
+                    <label for="numberOfQuestionsInput" class="formLabel">Select the number of questions in the game</label>
+                    <input type="number" id="numberOfQuestionsInput" min="1" max="50" value="1">
+                </div>
+
+                <div class="criterionDiv">
+                    <label for="setCategory" class="formLabel">Select the category of the questions</label>
+                    <select name="category" id="setCategory" class="form-select criterionSelect">
+                        <option value="" data-display="Select">Any Category</option>
+                        <option value="General Knowledge">General Knowledge</option>
+                        <option value="Entertainment: Books">Entertainment: Books</option>
+                        <option value="Entertainment: Film">Entertainment: Film</option>
+                        <option value="Entertainment: Music">Entertainment: Music</option>
+                        <option value="Entertainment: Musicians & Theatres">Entertainment: Musicians & Theatres</option>
+                        <option value="Entertainment: Television">Entertainment: Television</option>
+                        <option value="Entertainment: Video Games">Entertainment: Video Games</option>
+                        <option value="Entertainment: Board Games">Entertainment: Board Games</option>
+                        <option value="Science & Nature">Science & Nature</option>
+                        <option value="Science: Computers">Science: Computers</option>
+                        <option value="Science: Mathematics">Science: Mathematics</option>
+                        <option value="Mythology">Mythology</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Geography">Geography</option>
+                        <option value="History">History</option>
+                        <option value="Politics">Politics</option>
+                        <option value="Art">Art</option>
+                        <option value="Celebrities">Celebrities</option>
+                        <option value="Animals">Animals</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Entertainment: Comics">Entertainment: Comics</option>
+                        <option value="Science: Gadgets">Science: Gadgets</option>
+                        <option value="Entertainment: Japanese Anime & Manga">Entertainment: Japanese Anime & Manga</option>
+                        <option value="Entertainment: Cartoon & Animations">Entertainment: Cartoon & Animations</option>
+                    </select>
+                </div>
+
+                <div class="criterionDiv">
+                    <label for="setDifficulty" class="formLabel">Select the difficulty of the questions</label>
+                    <select name="difficulty" id="setDifficulty" class="form-select criterionSelect">
+                        <option value="" data-display="Select">Any Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="criterionDiv">
+                    <label for="setType" class="formLabel">Select the type of questions</label>
+                    <select name="type" id="setType" class="form-select criterionSelect">
+                        <option value="" data-display="Select">Any Type</option>
+                        <option value="Multiple Choice">Multiple Choice</option>
+                        <option value="True / False">True / False</option>
+                    </select>
+                </div>
+
+                <div class="criterionDiv justify-content-center">
+                    <input type="submit" class="btn btn-light" name="button" value="Start">
+                </div>
+
             </form>
         </div>
     </div>

@@ -68,5 +68,71 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: purple
+/*    background-color: #3B3486; */
+    background-color: blue;
+    gap: 50px;
+}
+
+.selection > h2{
+    width: 60%;
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    padding-top: 30px;
+    color: #EBFBF5;
+}
+
+#form{
+    width: 80%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formLabel{
+    font-size: 1.8rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #EBFBF5;
+}
+
+#numberOfQuestionsInput{
+    width: 150px;
+    text-align: center;
+    border-radius: 7.5%;
+    height: 43px;
+    max-height: 43px;
+}
+
+.criterionDiv{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    flex: 1;
+    background-color: purple;
+/*    background-color: #3B3486; */
+}
+
+.criterionSelect{
+    width: 150px;
+    height: 43px;
+    max-height: 43px;
+}
+
+.criterionDiv > input[type="submit"]{
+    width: 150px;
+    max-height: 43px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px){
+    #form{
+        flex-direction: row;
+    }
+
+    .criterionDiv{
+        flex-direction: column;
+    }
 }
