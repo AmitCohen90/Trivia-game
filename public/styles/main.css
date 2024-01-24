@@ -4,6 +4,7 @@
     flex-direction: column;/*All sections inside main container are in column direction*/
     align-items: center; /*All elements in the main container (which means that all the containers it has are
                            centered horizontally*/
+    background-color: blueviolet;
 }
 
 @keyframes gradientAnimation {/*Using animationed background for the theme container*/
@@ -67,7 +68,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;/*The theme container is in column direction*/
-    align-items: center;/*All elements inside the userChoice-container are centered horizontally*/
+    align-items: center;
     background-color: #3B3486;
     gap: 50px;
 }
@@ -148,10 +149,94 @@
     justify-content: center; /*The button is positioned in the center horizontally*/
 }
 
-.submitButton-container > input[type="submit"]{ /*Styling the submit button itself*/
+.submitButton-container input[type="submit"]{ /*Styling the submit button itself*/
     width: 150px;
     max-height: 43px;
     margin-top: 30px;
+}
+
+.game-container{
+    display: flex;
+    flex-direction: column; /*The theme container is in column direction*/
+    justify-content: center;
+    align-items: center; /*All elements inside the userChoice-container are centered horizontally*/
+    min-height: 100vh; /*The height is minimum 100% of viewport height*/
+    width: 100%;
+    background-color: #DCB8E3;
+    gap: 35px;
+}
+
+.titleAndButton-container{ /*Styling the container in which we have h2 and button*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    gap: 20px;
+}
+
+.titleAndButton-container > h2{
+    font-family: 'Noticia Text', serif; /*External font from Google*/
+    font-size: 2.5rem;
+    color: #261429;
+    font-weight: bold;
+    text-align: center;
+}
+
+#defaultH2{
+    font-size: 3.5rem;
+}
+
+.titleAndButton-container button {
+    background-color: #9A8AAA;
+    border: none;
+}
+
+.titleAndButton-container button:hover{
+    background-color: #9A8AAA;
+}
+
+#form-game { /*We use the form as container as well*/
+    display: flex;
+    flex-direction: column; /*We use the form in column direction, i.e first we have the questions container
+                              and afterwards we have the submit button / Reset preferences button*/
+    align-items: center;
+    width: 80%;
+    background-color: #DCB8E3;
+    gap: 10px;
+}
+
+.questions-container{
+    min-height: 50vh;
+    max-height: 50vh;
+    overflow-y: auto; /*The question container won't resize in accordance to the amount of questions. Instead
+                        it will have a scroll bar*/
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    background-image: url("/Images/wesley-tingey-ZdOW9Qd8mQo-unsplash.jpg"); /*Using background image*/
+    /*background-color: brown;*/
+}
+
+.questions-container P{ /*Styling the questions itselves inside the qustions-container*/
+    font-size: 1.8rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif; /*External font from Google*/
+    /*Using external font from Google*/
+    color: black;
+    font-weight: bold;
+}
+
+.options-container{ /*Styling the questions' possible answers: whether it's multiple choice questions and whether
+                      it's True/False questions. Styling the way it's shown on the screen*/
+    display: flex;
+    justify-content: space-between; 
+}
+
+.options-container label{ /*Styling the label next to each option*/
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: 'Cinzel', serif; /*External font from Google*/
+    font-weight: bold;
 }
 
 @media (max-width: 768px){ /*Styling when the width of the screen is smaller then 768 px*/
@@ -190,6 +275,22 @@
         min-width: 0px;
         flex: 1;
     }
+
+    .titleAndButton-container > h2 { 
+        font-size: 1.8rem;
+    }
+
+    #defaultH2 {
+        font-size: 2.5rem;
+    }
+
+    .questions-container > p {
+        font-size: 1.2rem;
+    }
+
+    .options-container label {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 576px){ /*Styling when the width of the screen is smaller then 576 px*/
@@ -216,5 +317,10 @@
 
     #numberOfQuestions-input{
         font-size: 0.8rem;
+    }
+
+    .options-container{ /*Wh change the style of the way the options shown in each questions so it will be column
+                          direction instead of row*/
+        flex-direction: column;
     }
 }

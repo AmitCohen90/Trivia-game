@@ -19,6 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
     <!--Custom google font-->
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noticia+Text&display=swap" rel="stylesheet">
+    <!--Custom google font-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script> <!--Bootstrap script link-->
@@ -50,7 +55,7 @@
 
             <h2>Select your preferences below and then click the Start button</h2>
 
-            <form action="/" id="form" class="form" method="get"><!--form element in which we have few queries
+            <form action="/" id="form" class="form" method="post"><!--form element in which we have few queries
                                                                      for the user and button to submit. The
                                                                      queries are in one container and the submit
                                                                      button is in different container-->
@@ -64,7 +69,11 @@
                             Select the number of questions in the game
                         </label>
 
-                        <input type="number" id="numberOfQuestions-input" min="1" max="50" value="1">
+                        <input type="number" name="number" id="numberOfQuestions-input" min="1" max="50"
+                        value="<%= typeof numberToDisplay !== 'undefined' ? numberToDisplay: '10' %>"> <!--If 
+                        this is the first time the user entered to the game or if he finished to play and he
+                        reset the properties, it will show default option. Else, it will show the option the
+                        user selected-->
                     </div><!--End of first query container-->
 
                     <div class="singleQuery-container"><!--Second query container in which the user has to select
@@ -76,31 +85,92 @@
                         </label>
 
                         <select name="category" id="setCategory" class="form-select query-selector">
-                            <option value="" data-display="Select">Any Category</option>
-                            <option value="General Knowledge">General Knowledge</option>
-                            <option value="Entertainment: Books">Entertainment: Books</option>
-                            <option value="Entertainment: Film">Entertainment: Film</option>
-                            <option value="Entertainment: Music">Entertainment: Music</option>
-                            <option value="Entertainment: Musicians & Theatres">Entertainment: Musicians & Theatres</option>
-                            <option value="Entertainment: Television">Entertainment: Television</option>
-                            <option value="Entertainment: Video Games">Entertainment: Video Games</option>
-                            <option value="Entertainment: Board Games">Entertainment: Board Games</option>
-                            <option value="Science & Nature">Science & Nature</option>
-                            <option value="Science: Computers">Science: Computers</option>
-                            <option value="Science: Mathematics">Science: Mathematics</option>
-                            <option value="Mythology">Mythology</option>
-                            <option value="Sports">Sports</option>
-                            <option value="Geography">Geography</option>
-                            <option value="History">History</option>
-                            <option value="Politics">Politics</option>
-                            <option value="Art">Art</option>
-                            <option value="Celebrities">Celebrities</option>
-                            <option value="Animals">Animals</option>
-                            <option value="Vehicles">Vehicles</option>
-                            <option value="Entertainment: Comics">Entertainment: Comics</option>
-                            <option value="Science: Gadgets">Science: Gadgets</option>
-                            <option value="Entertainment: Japanese Anime & Manga">Entertainment: Japanese Anime & Manga</option>
-                            <option value="Entertainment: Cartoon & Animations">Entertainment: Cartoon & Animations</option>
+                            <option value="Any Category" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Any Category' ? 'selected' : '' %>>Any Category
+                            </option> <!--selected attribute won't be enabled in case this is the first time
+                                          the user entered or he finished to play and reset the game. Else, it
+                                          will be enabled in case this is the option the user selected before-->
+                            <option value="General Knowledge" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'General Knowledge' ? 'selected' : '' %>>General Knowledge
+                            </option>
+                            <option value="Entertainment: Books" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Entertainment: Books' ? 'selected' : '' %>>
+                                Entertainment: Books
+                            </option>
+                            <option value="Entertainment: Film" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Entertainment: Film' ? 'selected' : '' %>>Entertainment: Film
+                            </option>
+                            <option value="Entertainment: Music" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Entertainment: Music' ? 'selected' : '' %>>
+                                Entertainment: Music
+                            </option>
+                            <option value="Entertainment: Musicians & Theatres" <%= typeof categoryToDisplay !==
+                                'undefined' && categoryToDisplay === 'Entertainment: Musicians & Theatres' ?
+                                'selected' : '' %>>Entertainment: Musicians & Theatres
+                            </option>
+                            <option value="Entertainment: Television" <%= typeof categoryToDisplay !== 'undefined'
+                                && categoryToDisplay === 'Entertainment: Television' ? 'selected' : '' %>>
+                                Entertainment: Television
+                            </option>
+                            <option value="Entertainment: Video Games" <%= typeof categoryToDisplay !==
+                                'undefined' && categoryToDisplay === 'Entertainment: Video Games' ? 'selected' :
+                                '' %>>Entertainment: Video Games
+                            </option>
+                            <option value="Entertainment: Board Games" <%= typeof categoryToDisplay !==
+                                'undefined' && categoryToDisplay === 'Entertainment: Board Games' ? 'selected' : '' %>
+                                >Entertainment: Board Games
+                            </option>
+                            <option value="Science & Nature" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Science & Nature' ? 'selected' : '' %>>Science & Nature
+                            </option>
+                            <option value="Science: Computers" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Science: Computers' ? 'selected' : '' %>>Science: Computers
+                            </option>
+                            <option value="Science: Mathematics" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Science: Mathematics' ? 'selected' : '' %>>
+                                Science: Mathematics
+                            </option>
+                            <option value="Mythology" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Mythology' ? 'selected' : '' %>>Mythology
+                            </option>
+                            <option value="Sports" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Sports' ? 'selected' : '' %>>Sports
+                            </option>
+                            <option value="Geography" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Geography' ? 'selected' : '' %>>Geography</option>
+                            <option value="History" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'History' ? 'selected' : '' %>>History
+                            </option>
+                            <option value="Politics" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Politics' ? 'selected' : '' %>>Politics
+                            </option>
+                            <option value="Art" <%= typeof categoryToDisplay !== 'undefined' && categoryToDisplay
+                                === 'Art' ? 'selected' : '' %>>Art
+                            </option>
+                            <option value="Celebrities" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Celebrities' ? 'selected' : '' %>>Celebrities
+                            </option>
+                            <option value="Animals" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Animals' ? 'selected' : '' %>>Animals
+                            </option>
+                            <option value="Vehicles" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Vehicles' ? 'selected' : '' %>>Vehicles
+                            </option>
+                            <option value="Entertainment: Comics" <%= typeof categoryToDisplay !== 'undefined'
+                                && categoryToDisplay === 'Entertainment: Comics' ? 'selected' : '' %>>
+                                Entertainment: Comics
+                            </option>
+                            <option value="Science: Gadgets" <%= typeof categoryToDisplay !== 'undefined' &&
+                                categoryToDisplay === 'Science: Gadgets' ? 'selected' : '' %>>Science: Gadgets
+                            </option>
+                            <option value="Entertainment: Japanese Anime & Manga" <%= typeof categoryToDisplay
+                                !== 'undefined' && categoryToDisplay === 'Entertainment: Japanese Anime & Manga' ?
+                                'selected' : '' %>>Entertainment: Japanese Anime & Manga
+                            </option>
+                            <option value="Entertainment: Cartoon & Animations" <%= typeof categoryToDisplay !==
+                                'undefined' && categoryToDisplay === 'Entertainment: Cartoon & Animations' ?
+                                'selected' : '' %>>Entertainment: Cartoon & Animations
+                            </option>
                         </select>
                     </div><!--End of second query container-->
 
@@ -113,10 +183,20 @@
                         </label>
 
                         <select name="difficulty" id="setDifficulty" class="form-select query-selector">
-                            <option value="" data-display="Select">Any Difficulty</option>
-                            <option value="Easy">Easy</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Hard">Hard</option>
+                            <option value="Any Difficulty" <%= typeof difficultyToDisplay !== 'undefined' &&
+                                difficultyToDisplay === 'Any Difficulty' ? 'selected' : '' %>>Any Difficulty
+                            </option> <!--selected attribute won't be enabled in case this is the first time
+                                          the user entered or he finished to play and reset the game. Else, it
+                                          will be enabled in case this is the option the user selected before-->
+                            <option value="Easy" <%= typeof difficultyToDisplay !== 'undefined' &&
+                                difficultyToDisplay === 'Easy' ? 'selected' : '' %>>Easy
+                            </option>
+                            <option value="Medium" <%= typeof difficultyToDisplay !== 'undefined' &&
+                                difficultyToDisplay === 'Medium' ? 'selected' : '' %>>Medium
+                            </option>
+                            <option value="Hard" <%= typeof difficultyToDisplay !== 'undefined' &&
+                                difficultyToDisplay === 'Hard' ? 'selected' : '' %>>Hard
+                            </option>
                         </select>
                     </div><!--End of third query container-->
 
@@ -128,9 +208,17 @@
                         </label>
 
                         <select name="type" id="setType" class="form-select query-selector">
-                            <option value="" data-display="Select">Any Type</option>
-                            <option value="Multiple Choice">Multiple Choice</option>
-                            <option value="True / False">True / False</option>
+                            <option value="Any Type" <%= typeof typeToDisplay !== 'undefined' && typeToDisplay ===
+                                'Any Type' ? 'selected' : '' %>>Any Type
+                            </option> <!--selected attribute won't be enabled in case this is the first time
+                                          the user entered or he finished to play and reset the game. Else, it
+                                          will be enabled in case this is the option the user selected before-->
+                            <option value="Multiple Choice" <%= typeof typeToDisplay !== 'undefined' &&
+                                typeToDisplay === 'Multiple Choice' ? 'selected' : '' %>>Multiple Choice
+                            </option>
+                            <option value="True / False" <%= typeof typeToDisplay !== 'undefined' && typeToDisplay
+                                === 'True / False' ? 'selected' : '' %>>True / False
+                            </option>
                         </select>
                     </div><!--End of fourth query container-->
 
@@ -138,10 +226,90 @@
 
                 <div class="submitButton-container"><!--Submit button container in which the user submit his
                                                         selections-->
-                    <input type="submit" class="btn btn-light" name="button" value="Start">
+                    <input type="submit" class="btn btn-light" name="button" value="Start" formaction="#game">
                 </div>
+            </form> <!--End of form-->
+        </div> <!--End of user Choice container-->
+
+        <div class="game-container" id="game"> <!--game container in which the user play the game and answeres
+                                                   the trivia questions. This container includes two elements:
+                                                   titleAndButton-container and form-->
+            <div class="titleAndButton-container"> 
+                <% if(locals.playerAnswersArray && locals.numOfCorrectAnswers) {%> <!--If the user finished to
+                    answer the questions and he submitted it, this h2 will shown-->
+                    <h2>You finish. You were right at <%= numOfCorrectAnswers %> questions withing
+                    <%= playerAnswersArray.length %> questions. </h2>
+                <%} else if(locals.numberToDisplay && locals.categoryToDisplay && locals.difficultyToDisplay &&
+                locals.typeToDisplay) {%>  <%# If the user selected his preferences now, this h2 will shown %>
+                    <h2>In this game you are going to be asked <%= numberToDisplay !== 1 ? 
+                    numberToDisplay + ' questions' : numberToDisplay + ' question' %> in <%= categoryToDisplay !==
+                    'Any Category' ? 'the ' + categoryToDisplay + ' category':  categoryToDisplay %>,
+                    <%= difficultyToDisplay !== 'Any Difficulty' ? difficultyToDisplay +' difficulty':
+                    difficultyToDisplay %> and <%= typeToDisplay !== 'Any Type' ? typeToDisplay + ' type' : 
+                     typeToDisplay %> of <%= numberToDisplay === 1 ? 'question' : 'questions' %>. <br> Good luck!
+                     </h2> <%# In this h2 we EJS to fit the caption to the content. For example, single and
+                     plura, 1 question, 2 questions %>
+                <% } else { %> <%# If this is the first time the user entered, this h2 will shown %>
+                    <h2 id="defaultH2">Select your preferences first</h2>
+                    <a href="#user-choice"> <%# In this case we have a button as well %>
+                        <button type="button" class="btn btn-light btn-lg px-4 me-sm-3">
+                        Set prefernces
+                        </button>
+                    </a>
+                <% } %>
+            </div>
+            <form action="/" id="form-game" class="form" method="post"> <%# The section where the game is played
+                                                                         %>
+                <% if(locals.questionsArray && locals.optionsArray) { %> <%# If the user selected his preferences
+                                                                             already. This if statement won't
+                                                                             be true only if it's the first time
+                                                                             the user enter to the game %>
+                    <div class="questions-container"> <%# In this container we have the questions and the possible
+                                                          options %>
+                        <% for(let i = 0; i < questionsArray.length; i++) { %> <%# Iterating throughout all the
+                                                                                   questions %>
+                            <p><%= i + 1 %>. <%= questionsArray[i] %></p> <%# Numbering the questions and
+                                                                              assigning the next question %>
+                            <div class="options-container"> <%# In this container we have all possible options
+                                                                for the current question %>
+                                <% for(let j = 0; j < optionsArray[i].length; j++) { %> <%# Iterating throughout
+                                                                                            the possible options
+                                                                                            for this question%>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="q<%= i + 1 %>" id=
+                                        "inlineRadio<%= i + 1 %>" value="<%= optionsArray[i][j] %>" <%= typeof
+                                        playerAnswersArray !== 'undefined' ? (playerAnswersArray[i] ===
+                                        optionsArray[i][j] ? 'checked' : '') : (j === 0 ? 'checked' : '')%>>
+                                        <%# The name of the button is 'q' (stands for question) and number of
+                                        question. The id has the same idea, in the value we assign the j-th option
+                                        of the i-th question. The checked attribute enabled it two cases: if the
+                                        user didn't finish the game yet and this is the first option of the i-th
+                                        question. The second case is if the user submitted the form so the checked
+                                        attribute will be enabled if this is the answer the user selected before
+                                        submitting %>
+
+                                        <label class="form-check-label" for="inlineRadio<%= i + 1 %>"><%=
+                                            optionsArray[i][j] %> <%# Assiging the possible answer to tht label %>
+                                        </label>
+                                    </div>                                    
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+                    <% if(locals.playerAnswersArray) {%> <%# Checking whether the user submitted his answers yet %>
+                        <a href="#user-choice"> <%# Create button of rematch and reset your preferences %>
+                            <button type="button" class="btn btn-light">
+                                Rematch
+                            </button>
+                        </a>
+                    <% } else {%> <%# In case the user hasn't submitted his answers yet %>
+                        <input type="submit" class="btn btn-light" name="button" value="Submit" formaction=
+                        "#game"> <%# create submit button %>
+                    <% } %>
+                <% } %>
             </form>
-        </div>
-    </div>
+        </div>  <%# End of game-container %>
+    </div> <%# End of main container %>
 </body>
 </html>
+
