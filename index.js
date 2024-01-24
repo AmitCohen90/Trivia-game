@@ -19,6 +19,8 @@ var result; //The result we are going to receive from the API
 
 const API_URL = "https://opentdb.com/api.php";//The resource we are going to use
 
+const currentYear = (new Date).getFullYear();
+
 app.use(express.static("public")); //use the express.static middleware to serve static files from the "public"
                                    //directory
 
@@ -61,7 +63,7 @@ app.get("/", async (req, res) => {
     } catch(error) {
         console.log(error.data);
     }
-    res.render(__dirname + "/views/index.ejs"); //Uploading the page
+    res.render(__dirname + "/views/index.ejs", {currentYear}); //Uploading the page
 });
 
 app.post("/", async (req,res) => {
@@ -104,37 +106,47 @@ app.post("/", async (req,res) => {
             result = (await axios.get(generatedURL)).data; /*Making an asynchronous HTTP GET request using Axios
             to the URL specified by generatedURL, waiting for the request to complete, and then storing the
             response data in the result variable for further processing.*/
-            questionsArray = []; //Assigning empty array to the questionsArray we declared above
-            for(let i = 0; i < result.results.length; i++){
-                questionsArray.push(Buffer.from(result.results[i].question,'base64').toString('utf-8'));
-            }/*Adding every question from the result encoded to utf-8 in the same order*/
 
-            optionsArray = []; //Assigning empty array to optionsArray we declared above
-            for(let i = 0; i < result.results.length; i++){
-                optionsArray.push(result.results[i].incorrect_answers);
-                let correctAnswer = result.results[i].correct_answer;
-                optionsArray[i].push(correctAnswer);
-            } /*Adding the incorrect answer and correct answer to the array in the same order of the questions.
-                Every element in this array, is an array of options*/
-
-            for(let i = 0; i < optionsArray.length; i++){
-                for(let j = 0; j < optionsArray[i].length; j++){
-                    optionsArray[i][j] = Buffer.from(optionsArray[i][j], 'base64').toString("utf-8");
-                }
-            } //Change the encoding from base64 to utf-8
-
-            for(let i = 0; i < optionsArray.length; i++){
-                let typeOfQuestion = Buffer.from(result.results[i].type, 'base64').toString('utf-8');
-                if(typeOfQuestion === "multiple"){ //Shuffle the options in case it's multiple questions
-                    shuffleOptions(optionsArray[i]);
-                }
-                else{ //Reordering the options in case it's True/False question
-                    orderBoolean(optionsArray[i]);
-                }
+            var succeed = true;
+            if(result.response_code === 1) { /*No Results Could not return results. The API doesn't have enough 
+                                             questions for your query.*/
+                succeed = false;
+                res.render(__dirname + "/views/index.ejs", {numberToDisplay,categoryToDisplay,
+                difficultyToDisplay, typeToDisplay, currentYear, succeed});
             }
 
-            res.render(__dirname + "/views/index.ejs", {numberToDisplay, categoryToDisplay, difficultyToDisplay,
-                typeToDisplay, questionsArray, optionsArray});
+            else{
+                questionsArray = []; //Assigning empty array to the questionsArray we declared above
+                for(let i = 0; i < result.results.length; i++){
+                    questionsArray.push(Buffer.from(result.results[i].question,'base64').toString('utf-8'));
+                }/*Adding every question from the result encoded to utf-8 in the same order*/
+
+                optionsArray = []; //Assigning empty array to optionsArray we declared above
+                for(let i = 0; i < result.results.length; i++){
+                    optionsArray.push(result.results[i].incorrect_answers);
+                    let correctAnswer = result.results[i].correct_answer;
+                    optionsArray[i].push(correctAnswer);
+                } /*Adding the incorrect answer and correct answer to the array in the same order of the questions.
+                    Every element in this array, is an array of options*/
+
+                for(let i = 0; i < optionsArray.length; i++){
+                    for(let j = 0; j < optionsArray[i].length; j++){
+                        optionsArray[i][j] = Buffer.from(optionsArray[i][j], 'base64').toString("utf-8");
+                    }
+                } //Change the encoding from base64 to utf-8
+
+                for(let i = 0; i < optionsArray.length; i++){
+                    let typeOfQuestion = Buffer.from(result.results[i].type, 'base64').toString('utf-8');
+                    if(typeOfQuestion === "multiple"){ //Shuffle the options in case it's multiple questions
+                        shuffleOptions(optionsArray[i]);
+                    }
+                    else{ //Reordering the options in case it's True/False question
+                        orderBoolean(optionsArray[i]);
+                    }
+                }
+                res.render(__dirname + "/views/index.ejs", {numberToDisplay, categoryToDisplay, difficultyToDisplay,
+                typeToDisplay, questionsArray, optionsArray, currentYear, succeed});
+            }
         } catch (error) {
             res.render(__dirname + "/views/index.ejs");
             console.log(error.response.data);
@@ -176,7 +188,8 @@ app.post("/", async (req,res) => {
                 questionsArray[i] += ` CORRECT ANSWER!`;
             }
         }
-        res.render(__dirname + "/views/index.ejs", {questionsArray, optionsArray, playerAnswersArray, numOfCorrectAnswers});
+        res.render(__dirname + "/views/index.ejs", {questionsArray, optionsArray, playerAnswersArray,
+            numOfCorrectAnswers, currentYear});
     }
 });
 

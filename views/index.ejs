@@ -239,16 +239,34 @@
                     answer the questions and he submitted it, this h2 will shown-->
                     <h2>You finish. You were right at <%= numOfCorrectAnswers %> questions withing
                     <%= playerAnswersArray.length %> questions. </h2>
+
                 <%} else if(locals.numberToDisplay && locals.categoryToDisplay && locals.difficultyToDisplay &&
-                locals.typeToDisplay) {%>  <%# If the user selected his preferences now, this h2 will shown %>
-                    <h2>In this game you are going to be asked <%= numberToDisplay !== 1 ? 
-                    numberToDisplay + ' questions' : numberToDisplay + ' question' %> in <%= categoryToDisplay !==
-                    'Any Category' ? 'the ' + categoryToDisplay + ' category':  categoryToDisplay %>,
-                    <%= difficultyToDisplay !== 'Any Difficulty' ? difficultyToDisplay +' difficulty':
-                    difficultyToDisplay %> and <%= typeToDisplay !== 'Any Type' ? typeToDisplay + ' type' : 
-                     typeToDisplay %> of <%= numberToDisplay === 1 ? 'question' : 'questions' %>. <br> Good luck!
-                     </h2> <%# In this h2 we EJS to fit the caption to the content. For example, single and
-                     plura, 1 question, 2 questions %>
+                locals.typeToDisplay) {%>  <%# If the user selected his preferences %>
+                    <% if(locals.succeed && succeed === true) { %> <%# This h2 will shown if there are results %>
+                        <h2>In this game you are going to be asked <%= numberToDisplay !== 1 ? 
+                        numberToDisplay + ' questions' : numberToDisplay + ' question' %> in <%= categoryToDisplay !==
+                        'Any Category' ? 'the ' + categoryToDisplay + ' category':  categoryToDisplay %>,
+                        <%= difficultyToDisplay !== 'Any Difficulty' ? difficultyToDisplay +' difficulty':
+                        difficultyToDisplay %> and <%= typeToDisplay !== 'Any Type' ? typeToDisplay + ' type' : 
+                        typeToDisplay %> of <%= numberToDisplay === 1 ? 'question' : 'questions' %>. <br> Good luck!
+                        </h2> <%# In this h2 we EJS to fit the caption to the content. For example, single and
+                        plura, 1 question, 2 questions %>
+
+                    <% } else { %> <%# This h2 will shown if the are not results %>
+                        <h2>No results in this preferences: <%= numberToDisplay !== 1 ? numberToDisplay +
+                            ' questions' : numberToDisplay + ' question' %>, <%= categoryToDisplay !== 
+                            'Any Category' ? 'the ' + categoryToDisplay + ' category':  categoryToDisplay %>, 
+                            <%= difficultyToDisplay !== 'Any Difficulty' ? difficultyToDisplay +' difficulty':
+                            difficultyToDisplay %>, <%= typeToDisplay !== 'Any Type' ? typeToDisplay + ' type' : 
+                            typeToDisplay %> of <%= numberToDisplay === 1 ? 'question' : 'questions' %>.</h2>
+
+                            <a href="#user-choice"> <%# In this case we have a button as well %>
+                                <button type="button" class="btn btn-light btn-lg px-4 me-sm-3">
+                                Set prefernces
+                                </button>
+                            </a>
+                    <% } %>
+                    
                 <% } else { %> <%# If this is the first time the user entered, this h2 will shown %>
                     <h2 id="defaultH2">Select your preferences first</h2>
                     <a href="#user-choice"> <%# In this case we have a button as well %>
@@ -309,6 +327,15 @@
                 <% } %>
             </form>
         </div>  <%# End of game-container %>
+
+        <div class="footer-container">
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+                    <span class="mb-3 mb-md-0">© <%= currentYear %> Amit Cohen</span> <%# Assigning current year%>
+                    <span class="mb-3 mb-md-0">Image by studio4rt on Freepik</span>
+                </footer>
+            </div>
+        </div>
     </div> <%# End of main container %>
 </body>
 </html>

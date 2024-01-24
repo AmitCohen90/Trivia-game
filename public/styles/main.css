@@ -4,7 +4,6 @@
     flex-direction: column;/*All sections inside main container are in column direction*/
     align-items: center; /*All elements in the main container (which means that all the containers it has are
                            centered horizontally*/
-    background-color: blueviolet;
 }
 
 @keyframes gradientAnimation {/*Using animationed background for the theme container*/
@@ -239,6 +238,22 @@
     font-weight: bold;
 }
 
+.footer-container{
+    width: 100%;
+    background: linear-gradient(120deg, #13076B 0%, #968AEB 50%, #C0B04D 100%);
+    /*Choosing the angle of the
+    gradient (120deg), 3 different colors and their location in the background*/
+    background-size: 200% 200%;
+    /*Setting bigger size than the screent for the animation to be shown well*/
+    animation: gradientAnimation 5s ease infinite;
+    /*Using the animation above*/
+}
+
+.footer-container span{
+    font-size: 1.5rem;
+    color: white;
+}
+
 @media (max-width: 768px){ /*Styling when the width of the screen is smaller then 768 px*/
 
     .queries-container{
@@ -291,6 +306,10 @@
     .options-container label {
         font-size: 0.7rem;
     }
+
+    .footer-container span {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 576px){ /*Styling when the width of the screen is smaller then 576 px*/
@@ -322,5 +341,9 @@
     .options-container{ /*Wh change the style of the way the options shown in each questions so it will be column
                           direction instead of row*/
         flex-direction: column;
+    }
+
+    .footer-container span {
+        font-size: 1rem;
     }
 }
