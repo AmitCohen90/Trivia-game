@@ -26,6 +26,6 @@ Make sure you have the following software installed on your machine:
 
 3. Install the dependencies using npm: npm install
 
-Running the Server:
+Running the Server
 Once you have installed the dependencies, you can start the server using the following command:
-node index.js / nodemon index.js
+npm start
