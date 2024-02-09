@@ -28,4 +28,7 @@ Make sure you have the following software installed on your machine:
 
 Running the Server
 Once you have installed the dependencies, you can start the server using the following command:
+
 npm start
+
+After starting the server, navigate to http://localhost:3000 in your web browser to access the server.
